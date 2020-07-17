@@ -5,7 +5,7 @@ const child_process_1 = require("child_process");
 const path_1 = require("path");
 const os_1 = require("os");
 let registeredEvents = [];
-let mouseProcess;
+let mouseProcess = false;
 class MouseEvents extends events_1.EventEmitter {
     constructor() {
         super();
@@ -36,6 +36,7 @@ class MouseEvents extends events_1.EventEmitter {
                 event === "mouse-move") &&
                 mouseProcess) {
                 mouseProcess.kill();
+                mouseProcess = false;
             }
             registeredEvents = registeredEvents.filter(x => x !== event);
         });
